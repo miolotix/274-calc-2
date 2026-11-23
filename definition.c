@@ -401,12 +401,10 @@ void gatherInput(Stack* stack) {
 
     if (type == TYPE_LONG) {
         push(stack, TYPE_LONG, strtol(input, NULL, 10), 0.0, NULL);
-        outputText("long: %ld\n", strtol(input, NULL, 10));
     }
 
     else if (type == TYPE_DOUBLE) {
         push(stack, TYPE_DOUBLE, 0, strtod(input, NULL), NULL);
-        outputText("double: %g\n", strtod(input, NULL));
     }
 
     else if (type == TYPE_STRING) {
