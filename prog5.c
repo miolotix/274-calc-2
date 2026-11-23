@@ -1,32 +1,25 @@
 #include <stdio.h>
+#include <fcntl.h>
+#include <sys/stat.h>
+#include <errno.h>
+#include <string.h>
 #include "definition.h"
 
 int main(){
 
-    // print stack
-    // prompt user input "# "
-    // store input as head on the stack, push the rest
-    // remove end of stack if applicable
-
-    Level* head = NULL;
     Stack s = {NULL, 0};
     Stack* stack = &s;
 
-    printStack(stack);
-
-    push(stack, TYPE_DOUBLE,0, 1.01, NULL);
-    push(stack, TYPE_STRING, 0, 0.0, "hello world");
-    push(stack, TYPE_LONG, 5, 0.0, NULL);
-    push(stack, TYPE_LONG, 72, 0.0, NULL);
-    push(stack, TYPE_STRING, 0, 0.0, "butt");
+    logFile = fopen("prog5_log.txt", "w");
+    if (logFile == NULL) {
+        printf("Could not open log file: %s\n", strerror(errno));
+        return 1;
+    }
 
     printStack(stack);
-    printf("\n");
-
-    push(stack, TYPE_LONG, 5, 0.0, NULL);
-
-    printStack(stack);
-
+    while (1) { // loops forever
+        gatherInput(stack);
+        printStack(stack);
+    }
 
 }
-;
